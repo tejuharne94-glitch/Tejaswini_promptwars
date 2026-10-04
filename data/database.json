@@ -1,0 +1,870 @@
+{
+  "users": [
+    {
+      "id": "usr_admin_default",
+      "email": "admin@reasoninggraph.internal",
+      "name": "System Administrator",
+      "role": "admin",
+      "status": "active",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "passwordHash": "a5e01cba5403a07d35df0ea9ead5557f5696c9dad46658c38eb1d9d395a38c61034befb21fa41dc846478f2ffe4f7827386ca4067ce0fa1ba87a9b53d43b40c6",
+      "salt": "27edc0a3f5fe566beb8884ca4b005aa9",
+      "createdAt": "2026-09-04T07:24:23.667Z",
+      "lastLoginAt": "2026-10-04T07:24:28.847Z"
+    },
+    {
+      "id": "usr_demo_user",
+      "email": "demo@reasoninggraph.com",
+      "name": "Elena Rostova",
+      "role": "user",
+      "status": "active",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+      "passwordHash": "288f5c2174e3d97d0fe0f39dc4699170a3712d6aa14f66d41b709f8502c88a245ec220c711463384bf0e4fe6c397b12aaaad39c8eec9c61a34a20f2086cc922e",
+      "salt": "2aeaea2a2c93d3aee8634ec77e163ce1",
+      "createdAt": "2026-09-20T07:24:23.675Z",
+      "lastLoginAt": "2026-10-04T07:24:23.675Z"
+    },
+    {
+      "id": "usr_marcus_v",
+      "email": "marcus.vance@techventures.io",
+      "name": "Marcus Vance",
+      "role": "user",
+      "status": "active",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "passwordHash": "2657982a58bb0856fc4044f52f66e30246112b9ebb15ad88d1daac8c9059ba3d6914dd2fed77d1c55e2f66cceff603e60e1a94576e8dc8f2dd691ebf58d0e514",
+      "salt": "e9f307bbc490ab69c0a06383180b3d88",
+      "createdAt": "2026-09-29T07:24:23.682Z",
+      "lastLoginAt": "2026-10-03T07:24:23.682Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "rg_tok_030bb4027169d312e45b52bab5d3b12bb564d9d4d6f849a98a188247e53a1ff5",
+      "userId": "usr_admin_default",
+      "expiresAt": 1791703468847
+    }
+  ],
+  "analyses": [
+    {
+      "id": "ana_1791098687192_8x5p",
+      "userId": "usr_demo_user",
+      "title": "Remote-First vs. 3-Day Mandate Strategy",
+      "decisionText": "Should our company adopt remote-first permanently or mandate 3 days in office?",
+      "context": "Team of 80 distributed across 4 time zones. Office lease expires in 4 months.",
+      "constraints": "Cannot increase budget for travel stipends.",
+      "category": "Business Strategy",
+      "soundnessScore": 48,
+      "breakdown": {
+        "evidenceScore": 62,
+        "assumptionFragility": 78,
+        "riskExposure": 84,
+        "coherenceScore": 41
+      },
+      "summary": "The decision is severely constrained by an imminent 4-month lease expiration and an already distributed team spanning 4 time zones. Mandating 3 days in-office directly contradicts geographic reality without travel budget expansion.",
+      "keyTakeaway": "Audit the exact percentage of staff residing outside commutable radius immediately; a mandatory return will cause abrupt attrition without travel subsidies.",
+      "nodes": [
+        {
+          "id": "node_claim",
+          "type": "claim",
+          "label": "Remote-First vs. Office Mandate",
+          "description": "Choose between permanent remote-first transition or enforcing a 3-day weekly in-office requirement.",
+          "confidence": "low",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "Workplace",
+            "RealEstate",
+            "HR"
+          ],
+          "x": 480,
+          "y": 60
+        },
+        {
+          "id": "node_reason_cost",
+          "type": "reason",
+          "label": "Eliminate Office Lease Overhead",
+          "description": "Allowing the office lease to expire in 4 months saves significant operational expenditure without travel cost hikes.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Budget",
+            "Facilities"
+          ],
+          "x": 260,
+          "y": 190
+        },
+        {
+          "id": "node_reason_collab",
+          "type": "reason",
+          "label": "Drive In-Person Synergy",
+          "description": "A 3-day office cadence promises higher co-located spontaneous collaboration and unified company culture.",
+          "confidence": "medium",
+          "impact": "moderate",
+          "validationStatus": "questionable",
+          "tags": [
+            "Culture",
+            "Productivity"
+          ],
+          "x": 700,
+          "y": 190
+        },
+        {
+          "id": "node_evidence_distrib",
+          "type": "evidence",
+          "label": "80 Staff Across 4 Time Zones",
+          "description": "Company already hired talent distributed across 4 time zones with a hard freeze on travel stipends.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Demographics",
+            "Payroll"
+          ],
+          "x": 140,
+          "y": 330
+        },
+        {
+          "id": "node_assump_prod",
+          "type": "assumption",
+          "label": "Async Work Meets Performance Targets",
+          "description": "Assumes existing documentation, tooling, and management can sustain output without physical oversight.",
+          "confidence": "medium",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "Operations",
+            "Tooling"
+          ],
+          "x": 330,
+          "y": 330
+        },
+        {
+          "id": "node_assump_commute",
+          "type": "assumption",
+          "label": "Distributed Staff Can Attend Office",
+          "description": "Presumes non-local staff can comply with 3 days in-office without relocation packages or travel budget.",
+          "confidence": "low",
+          "impact": "critical",
+          "validationStatus": "questionable",
+          "tags": [
+            "Policy",
+            "Feasibility"
+          ],
+          "x": 530,
+          "y": 330
+        },
+        {
+          "id": "node_contradiction_geo",
+          "type": "contradiction",
+          "label": "Mandate vs. Travel Budget Freeze",
+          "description": "Mandating in-office attendance while forbidding travel budget increases directly excludes non-local employees across 4 zones.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Conflict",
+            "Policy"
+          ],
+          "x": 740,
+          "y": 330
+        },
+        {
+          "id": "node_risk_attrition",
+          "type": "risk",
+          "label": "Sudden Senior Talent Resignations",
+          "description": "Remote team members faced with impossible commute or relocation demands will seek remote employment elsewhere.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Retention",
+            "Legal"
+          ],
+          "x": 880,
+          "y": 340
+        },
+        {
+          "id": "node_missing_loc",
+          "type": "missing_info",
+          "label": "Commutable Radius Headcount Count",
+          "description": "Precise breakdown of how many of the 80 employees reside within a 45-minute commute of the physical headquarters.",
+          "confidence": "unverified",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "DataGap",
+            "Headcount"
+          ],
+          "x": 680,
+          "y": 490
+        },
+        {
+          "id": "node_alt_hub",
+          "type": "alternative",
+          "label": "Downsized Flexible Coworking Hub",
+          "description": "Exit the master lease; allocate partial savings to on-demand pass access for local staff without fixed 3-day mandates.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "untested",
+          "tags": [
+            "FlexOffice",
+            "Hybrid"
+          ],
+          "x": 240,
+          "y": 490
+        },
+        {
+          "id": "node_conseq_lease",
+          "type": "consequence",
+          "label": "Forced 4-Month Real Estate Rush",
+          "description": "Failing to establish policy immediately defaults either into expensive short-term lease extensions or unorganized eviction.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "Timeline",
+            "Finance"
+          ],
+          "x": 460,
+          "y": 590
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_claim_cost",
+          "source": "node_reason_cost",
+          "target": "node_claim",
+          "relation": "supports",
+          "label": "justifies remote-first"
+        },
+        {
+          "id": "edge_claim_collab",
+          "source": "node_reason_collab",
+          "target": "node_claim",
+          "relation": "supports",
+          "label": "justifies office mandate"
+        },
+        {
+          "id": "edge_distrib_cost",
+          "source": "node_evidence_distrib",
+          "target": "node_reason_cost",
+          "relation": "supports",
+          "label": "reinforces dispersed reality"
+        },
+        {
+          "id": "edge_distrib_contra",
+          "source": "node_evidence_distrib",
+          "target": "node_contradiction_geo",
+          "relation": "leads_to",
+          "label": "creates friction with"
+        },
+        {
+          "id": "edge_contra_collab",
+          "source": "node_contradiction_geo",
+          "target": "node_reason_collab",
+          "relation": "undermines",
+          "label": "makes mandate unworkable"
+        },
+        {
+          "id": "edge_collab_assump",
+          "source": "node_reason_collab",
+          "target": "node_assump_commute",
+          "relation": "assumes",
+          "label": "requires local proximity"
+        },
+        {
+          "id": "edge_cost_assump",
+          "source": "node_reason_cost",
+          "target": "node_assump_prod",
+          "relation": "assumes",
+          "label": "relies on async efficiency"
+        },
+        {
+          "id": "edge_assump_risk",
+          "source": "node_assump_commute",
+          "target": "node_risk_attrition",
+          "relation": "leads_to",
+          "label": "triggers departure if false"
+        },
+        {
+          "id": "edge_missing_contra",
+          "source": "node_missing_loc",
+          "target": "node_contradiction_geo",
+          "relation": "depends_on",
+          "label": "quantifies severity of"
+        },
+        {
+          "id": "edge_alt_claim",
+          "source": "node_alt_hub",
+          "target": "node_claim",
+          "relation": "alternates",
+          "label": "bypasses binary choice"
+        },
+        {
+          "id": "edge_claim_conseq",
+          "source": "node_claim",
+          "target": "node_conseq_lease",
+          "relation": "leads_to",
+          "label": "constrained by deadline"
+        }
+      ],
+      "detectedBiases": [
+        {
+          "biasName": "False Dilemma",
+          "description": "Framing the question as binary ('remote-first permanently' vs 'mandate 3 days in office') ignores flexible hybrid models like regional flex-passes or quarterly offsites.",
+          "affectedNodeIds": [
+            "node_claim",
+            "node_reason_collab",
+            "node_alt_hub"
+          ],
+          "recommendation": "Evaluate a staged hub-and-spoke model that does not require universal weekly in-person attendance."
+        },
+        {
+          "biasName": "Sunk Cost Fallacy",
+          "description": "Continuing to mandate office presence simply because an office has historically been maintained, despite hiring 80 people across 4 zones.",
+          "affectedNodeIds": [
+            "node_reason_collab",
+            "node_contradiction_geo"
+          ],
+          "recommendation": "Assess workplace requirements starting from zero-based organizational design rather than legacy occupancy habits."
+        }
+      ],
+      "challenges": [
+        {
+          "id": "chal_1",
+          "type": "what_if",
+          "title": "Mass Resignation Scenario",
+          "description": "If 40% of the team is out of market, how will the company backfill essential roles when implementing a mandatory return with zero travel budget?",
+          "impact": "high"
+        },
+        {
+          "id": "chal_2",
+          "type": "missing_evidence",
+          "title": "Productivity Parity Data",
+          "description": "Is there objective telemetry showing in-office cohorts currently outperforming remote cohorts in output or cross-functional delivery?",
+          "impact": "medium"
+        },
+        {
+          "id": "chal_3",
+          "type": "devils_advocate",
+          "title": "Two-Tier Company Stratification",
+          "description": "If only local employees attend 3 days while remote staff stay home, will you inadvertently create a privileged in-office inner circle that ruins retention?",
+          "impact": "high"
+        }
+      ],
+      "createdAt": "2026-10-04T07:24:47.192Z",
+      "updatedAt": "2026-10-04T07:24:47.192Z",
+      "userEmail": "demo@reasoninggraph.com"
+    },
+    {
+      "id": "ana_startup_pivot",
+      "userId": "usr_demo_user",
+      "userEmail": "demo@reasoninggraph.com",
+      "title": "Quit VP Role to Bootstrap an AI Workflow Platform",
+      "decisionText": "Should I resign from my VP of Product position at Series B firm to self-fund and bootstrap an AI agent workflow tool for legal compliance?",
+      "context": "Have 18 months personal runway ($140k liquid). Current salary $210k. 8 years domain knowledge in legal tech.",
+      "constraints": "Must reach cash-flow break-even within 14 months without venture capital dilution.",
+      "category": "Career & Entrepreneurship",
+      "soundnessScore": 68,
+      "breakdown": {
+        "evidenceScore": 72,
+        "assumptionFragility": 65,
+        "riskExposure": 58,
+        "coherenceScore": 84
+      },
+      "summary": "The rationale displays strong domain alignment and runway discipline, but rests on unverified conversion velocity and underestimates sales-cycle length in enterprise legal departments.",
+      "keyTakeaway": "High domain expertise offsets product execution risk, but procurement cycles in legal tech typically exceed 6-9 months, putting 14-month solvency under acute strain.",
+      "nodes": [
+        {
+          "id": "node_claim_1",
+          "type": "claim",
+          "label": "Resign and Bootstrap Legal AI Tool",
+          "description": "Leave high-paying VP role immediately to build and launch an autonomous compliance agent.",
+          "confidence": "medium",
+          "impact": "critical",
+          "validationStatus": "questionable",
+          "tags": [
+            "Decision",
+            "Career"
+          ],
+          "x": 450,
+          "y": 60
+        },
+        {
+          "id": "node_reason_1",
+          "type": "reason",
+          "label": "Unmatched 8-Yr Domain Knowledge",
+          "description": "Deep understanding of legal workflow pain points and established network of 40+ general counsels.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "Advantage"
+          ],
+          "x": 200,
+          "y": 190
+        },
+        {
+          "id": "node_reason_2",
+          "type": "reason",
+          "label": "Rapid GenAI Architecture Capabilities",
+          "description": "Modern LLM APIs enable single-engineer multi-agent development previously requiring a team of 10.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "Technology"
+          ],
+          "x": 700,
+          "y": 190
+        },
+        {
+          "id": "node_evidence_1",
+          "type": "evidence",
+          "label": "$140k Liquid Runway (18 Mo)",
+          "description": "Verified cash reserve providing $7,700/mo personal burn cushion.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Financial"
+          ],
+          "x": 80,
+          "y": 330
+        },
+        {
+          "id": "node_assumption_1",
+          "type": "assumption",
+          "label": "Warm Contacts Will Convert to Paid Pilots",
+          "description": "Assuming warm friendly conversations with corporate counsels will quickly translate to signed commercial contracts.",
+          "confidence": "low",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "Sales Risk"
+          ],
+          "x": 320,
+          "y": 330
+        },
+        {
+          "id": "node_risk_1",
+          "type": "risk",
+          "label": "Enterprise Security & SOC2 Lockout",
+          "description": "Enterprise legal teams require SOC2 Type II, ISO27001, and vendor risk reviews taking 4-9 months.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Security",
+            "Compliance"
+          ],
+          "x": 580,
+          "y": 330
+        },
+        {
+          "id": "node_contradiction_1",
+          "type": "contradiction",
+          "label": "Fast Runway vs 9-Month Legal Procurement",
+          "description": "14-month profitability target directly clashes with typical 6-12 month B2B legal procurement cycles.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "questionable",
+          "tags": [
+            "Timeline"
+          ],
+          "x": 820,
+          "y": 330
+        },
+        {
+          "id": "node_alternative_1",
+          "type": "alternative",
+          "label": "Build MVP Nights/Weekends & Pre-sell",
+          "description": "Retain VP position until securing 2 binding letters of intent (LOIs) with paid upfront pilot deposits.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "De-risked Path"
+          ],
+          "x": 220,
+          "y": 470
+        },
+        {
+          "id": "node_missing_info_1",
+          "type": "missing_info",
+          "label": "Customer Willingness-To-Pay Benchmark",
+          "description": "No empirical validation yet on whether boutique law firms will pay $500/mo or $5,000/mo.",
+          "confidence": "unverified",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "Pricing"
+          ],
+          "x": 620,
+          "y": 470
+        },
+        {
+          "id": "node_consequence_1",
+          "type": "consequence",
+          "label": "Career Opportunity Cost & Equity Loss",
+          "description": "Forfeits ~$90k in unvested Series B stock options and stable executive compensation trajectory.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "Cost"
+          ],
+          "x": 450,
+          "y": 580
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_1",
+          "source": "node_reason_1",
+          "target": "node_claim_1",
+          "relation": "supports",
+          "label": "Domain Edge"
+        },
+        {
+          "id": "edge_2",
+          "source": "node_reason_2",
+          "target": "node_claim_1",
+          "relation": "supports",
+          "label": "Tech Feasibility"
+        },
+        {
+          "id": "edge_3",
+          "source": "node_evidence_1",
+          "target": "node_reason_1",
+          "relation": "supports",
+          "label": "Financial Backing"
+        },
+        {
+          "id": "edge_4",
+          "source": "node_assumption_1",
+          "target": "node_claim_1",
+          "relation": "assumes",
+          "label": "Relies Upon"
+        },
+        {
+          "id": "edge_5",
+          "source": "node_risk_1",
+          "target": "node_claim_1",
+          "relation": "undermines",
+          "label": "Enterprise Hurdle"
+        },
+        {
+          "id": "edge_6",
+          "source": "node_contradiction_1",
+          "target": "node_assumption_1",
+          "relation": "contradicts",
+          "label": "Pacing Conflict"
+        },
+        {
+          "id": "edge_7",
+          "source": "node_alternative_1",
+          "target": "node_claim_1",
+          "relation": "alternates",
+          "label": "Pragmatic Counterpart"
+        },
+        {
+          "id": "edge_8",
+          "source": "node_missing_info_1",
+          "target": "node_claim_1",
+          "relation": "depends_on",
+          "label": "Needed to Decide"
+        },
+        {
+          "id": "edge_9",
+          "source": "node_claim_1",
+          "target": "node_consequence_1",
+          "relation": "leads_to",
+          "label": "Direct Impact"
+        }
+      ],
+      "detectedBiases": [
+        {
+          "biasName": "Optimism Bias (Planning Fallacy)",
+          "description": "Assuming a 14-month runway is ample while ignoring the standard 9-month procurement hurdle in legal tech.",
+          "affectedNodeIds": [
+            "node_claim_1",
+            "node_assumption_1"
+          ],
+          "recommendation": "Double estimated timeline to first enterprise revenue from 4 months to 8-10 months."
+        },
+        {
+          "biasName": "False Consensus Effect",
+          "description": "Equating friendly informal encouragement from peers with contractual purchasing intent.",
+          "affectedNodeIds": [
+            "node_assumption_1"
+          ],
+          "recommendation": "Require conditional paid pilot agreements ($2k deposit) prior to resigning."
+        }
+      ],
+      "challenges": [
+        {
+          "id": "chal_1",
+          "type": "devils_advocate",
+          "title": "Enterprise Legal Departments Reject Solo Founders",
+          "description": "General Counsels fear data liability and catastrophic leaks. An unvetted solo venture faces near-zero probability of security signoff without institutional backing.",
+          "impact": "high"
+        },
+        {
+          "id": "chal_2",
+          "type": "what_if",
+          "title": "What if Anthropic/OpenAI releases this as a native turnkey feature?",
+          "description": "If frontier models launch legal compliance primitives out of the box, thin wrapper products lose pricing power within 6 months.",
+          "impact": "high"
+        }
+      ],
+      "createdAt": "2026-10-01T07:24:23.682Z",
+      "updatedAt": "2026-10-01T07:24:23.682Z"
+    },
+    {
+      "id": "ana_microservices_refactor",
+      "userId": "usr_marcus_v",
+      "userEmail": "marcus.vance@techventures.io",
+      "title": "Refactor Core Monolith into Distributed Microservices",
+      "decisionText": "Should our 25-person engineering department decompose our Ruby on Rails monolith into Go/gRPC microservices before Q4 peak season?",
+      "context": "Deployments take 35 minutes. Test suite is flaking. Team of 25 engineers across 4 squads.",
+      "constraints": "Zero downtime acceptable. Q4 sales represent 60% of annual revenue.",
+      "category": "Engineering Architecture",
+      "soundnessScore": 42,
+      "breakdown": {
+        "evidenceScore": 45,
+        "assumptionFragility": 82,
+        "riskExposure": 88,
+        "coherenceScore": 50
+      },
+      "summary": "Severely fragile reasoning. The team is conflating deployment pipeline friction with architectural limitations, introducing distributed systems complexity right before peak commercial season.",
+      "keyTakeaway": "The primary bottleneck is CI/CD test orchestration, not monolith architecture. Undertaking a distributed migration before Q4 creates existential availability risks.",
+      "nodes": [
+        {
+          "id": "node_m_claim",
+          "type": "claim",
+          "label": "Decompose Monolith into Go Services",
+          "description": "Initiate major refactoring sprint to split Rails backend into microservices before Q4.",
+          "confidence": "low",
+          "impact": "critical",
+          "validationStatus": "debunked",
+          "tags": [
+            "Architecture"
+          ],
+          "x": 450,
+          "y": 60
+        },
+        {
+          "id": "node_m_reason1",
+          "type": "reason",
+          "label": "Slow 35-Minute Deploy Times",
+          "description": "Engineers report deployment wait times and queue bottlenecks blocking continuous delivery.",
+          "confidence": "high",
+          "impact": "moderate",
+          "validationStatus": "verified",
+          "tags": [
+            "Productivity"
+          ],
+          "x": 220,
+          "y": 190
+        },
+        {
+          "id": "node_m_assumption1",
+          "type": "assumption",
+          "label": "Microservices Will Speed Up Delivery",
+          "description": "Assumes network boundaries automatically improve developer velocity without considering network debugging.",
+          "confidence": "low",
+          "impact": "critical",
+          "validationStatus": "questionable",
+          "tags": [
+            "Fallacy"
+          ],
+          "x": 680,
+          "y": 190
+        },
+        {
+          "id": "node_m_risk1",
+          "type": "risk",
+          "label": "Catastrophic Q4 Outage During Migration",
+          "description": "Q4 represents 60% of annual revenue. Distributed data consistency bugs could cause database desync.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Business Hazard"
+          ],
+          "x": 750,
+          "y": 330
+        },
+        {
+          "id": "node_m_contradiction1",
+          "type": "contradiction",
+          "label": "Zero Downtime Rule vs In-Flight Service Cutover",
+          "description": "Zero downtime mandate is structurally contradicted by breaking shared database foreign keys in Rails.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Constraint Clash"
+          ],
+          "x": 450,
+          "y": 330
+        },
+        {
+          "id": "node_m_alternative1",
+          "type": "alternative",
+          "label": "Modular Monolith + Parallelized CI/CD",
+          "description": "Invest 2 weeks in caching CI test runners and enforcing Rails packwerk boundaries at 1/10th the risk.",
+          "confidence": "high",
+          "impact": "critical",
+          "validationStatus": "verified",
+          "tags": [
+            "Sane Alternative"
+          ],
+          "x": 180,
+          "y": 460
+        },
+        {
+          "id": "node_m_missing1",
+          "type": "missing_info",
+          "label": "Observability & Distributed Tracing Readiness",
+          "description": "No telemetry exists for OpenTelemetry or Jaeger to diagnose cross-service cascading failures.",
+          "confidence": "unverified",
+          "impact": "critical",
+          "validationStatus": "untested",
+          "tags": [
+            "DevOps Gap"
+          ],
+          "x": 550,
+          "y": 460
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_m_1",
+          "source": "node_m_reason1",
+          "target": "node_m_claim",
+          "relation": "supports"
+        },
+        {
+          "id": "edge_m_2",
+          "source": "node_m_assumption1",
+          "target": "node_m_claim",
+          "relation": "assumes"
+        },
+        {
+          "id": "edge_m_3",
+          "source": "node_m_risk1",
+          "target": "node_m_claim",
+          "relation": "undermines"
+        },
+        {
+          "id": "edge_m_4",
+          "source": "node_m_contradiction1",
+          "target": "node_m_claim",
+          "relation": "contradicts"
+        },
+        {
+          "id": "edge_m_5",
+          "source": "node_m_alternative1",
+          "target": "node_m_claim",
+          "relation": "alternates"
+        },
+        {
+          "id": "edge_m_6",
+          "source": "node_m_missing1",
+          "target": "node_m_assumption1",
+          "relation": "undermines"
+        }
+      ],
+      "detectedBiases": [
+        {
+          "biasName": "Resume-Driven Development (Novelty Bias)",
+          "description": "Engineers choosing complex distributed architecture to learn trendy technologies rather than solving business latency.",
+          "affectedNodeIds": [
+            "node_m_claim",
+            "node_m_assumption1"
+          ],
+          "recommendation": "Evaluate against simple alternatives like GitHub Actions parallel matrix testing."
+        }
+      ],
+      "challenges": [
+        {
+          "id": "chal_m_1",
+          "type": "devils_advocate",
+          "title": "You are trading compile-time safety for network timeouts",
+          "description": "A 25-person team rarely has the SRE bandwidth to manage Kafka partitions, schema registries, and distributed deadlocks.",
+          "impact": "high"
+        }
+      ],
+      "createdAt": "2026-09-28T07:24:23.682Z",
+      "updatedAt": "2026-09-28T07:24:23.682Z"
+    }
+  ],
+  "aiMetrics": [
+    {
+      "timestamp": "2026-10-04T07:24:47.191Z",
+      "model": "gemini-3.8-flash",
+      "action": "analyze_graph",
+      "promptTokens": 939,
+      "responseTokens": 2332,
+      "latencyMs": 14016,
+      "userId": "usr_demo_user",
+      "status": "success",
+      "id": "met_1791098687191_b4wf"
+    },
+    {
+      "id": "met_1",
+      "timestamp": "2026-10-04T07:22:23.682Z",
+      "model": "gemini-3.8-flash",
+      "action": "analyze_graph",
+      "promptTokens": 840,
+      "responseTokens": 1250,
+      "latencyMs": 1420,
+      "userId": "usr_demo_user",
+      "status": "success"
+    },
+    {
+      "id": "met_2",
+      "timestamp": "2026-10-04T07:23:18.682Z",
+      "model": "gemini-3.8-flash",
+      "action": "challenge_reasoning",
+      "promptTokens": 1120,
+      "responseTokens": 680,
+      "latencyMs": 1180,
+      "userId": "usr_demo_user",
+      "status": "success"
+    },
+    {
+      "id": "met_3",
+      "timestamp": "2026-10-04T07:23:51.682Z",
+      "model": "gemini-3.8-flash",
+      "action": "bias_audit",
+      "promptTokens": 950,
+      "responseTokens": 540,
+      "latencyMs": 980,
+      "userId": "usr_marcus_v",
+      "status": "success"
+    }
+  ],
+  "errorLogs": [
+    {
+      "id": "err_1",
+      "timestamp": "2026-10-03T07:24:23.682Z",
+      "endpoint": "/api/auth/login",
+      "method": "POST",
+      "statusCode": 401,
+      "message": "Invalid credentials attempted for unknown user test@unverified.org"
+    },
+    {
+      "id": "err_2",
+      "timestamp": "2026-10-03T19:24:23.682Z",
+      "endpoint": "/api/analysis/invalid_id",
+      "method": "GET",
+      "statusCode": 404,
+      "message": "Analysis record not found",
+      "userId": "usr_demo_user"
+    }
+  ]
+}

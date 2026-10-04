@@ -1,0 +1,6 @@
+{
+  "name": "Reasoning Graph",
+  "description": "Make your thinking visible. Turn decisions, assumptions, evidence, risks, and alternatives into an interactive visual reasoning graph.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
