@@ -7,7 +7,6 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: (user: UserType) => void;
-  onSwitchToAdmin: () => void;
   initialMode?: 'login' | 'register';
 }
 
@@ -15,7 +14,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   isOpen,
   onClose,
   onSuccess,
-  onSwitchToAdmin,
   initialMode = 'login',
 }) => {
   const [mode, setMode] = useState<'login' | 'register'>(initialMode);
@@ -240,21 +238,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               </button>
             </span>
           )}
-        </div>
-
-        {/* Admin Login portal link */}
-        <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-          <span>System Evaluator?</span>
-          <button
-            onClick={() => {
-              onClose();
-              onSwitchToAdmin();
-            }}
-            className="text-rose-700 hover:text-rose-900 font-semibold flex items-center gap-1"
-          >
-            <Shield className="w-3 h-3 text-rose-600" />
-            Admin Portal →
-          </button>
         </div>
       </div>
     </div>

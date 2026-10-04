@@ -2,9 +2,6 @@ import {
   User,
   ReasoningAnalysis,
   ChallengeInsight,
-  SystemStats,
-  AiMetric,
-  SystemErrorLog,
 } from '../types.js';
 
 const TOKEN_KEY = 'rg_auth_token';
@@ -33,7 +30,23 @@ export function clearStoredAuth() {
   localStorage.removeItem(USER_KEY);
 }
 
+/**
+ * Traceable API requester:
+ * Logs all network calls, payloads, and results so an AI investigator or developer
+ * can trace user input, processing logic, API calls, and responses.
+ */
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const method = options.method || 'GET';
+  console.log(`[AI Investigator - API Call] ${method} ${endpoint}`);
+  
+  if (options.body) {
+    try {
+      console.log(`[AI Investigator - Request Payload]:`, JSON.parse(options.body as string));
+    } catch {
+      console.log(`[AI Investigator - Request Body]:`, options.body);
+    }
+  }
+
   const token = getStoredToken();
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -44,21 +57,30 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(endpoint, {
-    ...options,
-    headers,
-  });
+  try {
+    const response = await fetch(endpoint, {
+      ...options,
+      headers,
+    });
 
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.error || `Request failed with status ${response.status}`);
+    const data = await response.json();
+    if (!response.ok) {
+      console.error(`[AI Investigator - API Error] Status ${response.status} on ${endpoint}:`, data.error || data);
+      throw new Error(data.error || `Request failed with status ${response.status}`);
+    }
+
+    console.log(`[AI Investigator - API Response Success] Status ${response.status} from ${endpoint}`);
+    return data;
+  } catch (err: any) {
+    console.error(`[AI Investigator - Network Error] on ${endpoint}:`, err.message);
+    throw err;
   }
-  return data;
 }
 
 export const api = {
-  // Auth
+  // Authentication
   async register(params: { email: string; name: string; password: string }): Promise<{ user: User; token: string }> {
+    console.log('[AI Investigator] User registering with email:', params.email);
     const res = await request<{ user: User; token: string }>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(params),
@@ -68,6 +90,7 @@ export const api = {
   },
 
   async login(params: { email: string; password: string }): Promise<{ user: User; token: string }> {
+    console.log('[AI Investigator] User logging in with email:', params.email);
     const res = await request<{ user: User; token: string }>('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify(params),
@@ -76,16 +99,8 @@ export const api = {
     return res;
   },
 
-  async adminLogin(params: { email: string; password: string }): Promise<{ user: User; token: string }> {
-    const res = await request<{ user: User; token: string }>('/api/auth/admin-login', {
-      method: 'POST',
-      body: JSON.stringify(params),
-    });
-    setStoredAuth(res.token, res.user);
-    return res;
-  },
-
   async googleSignIn(params: { email?: string; name?: string; avatar?: string } = {}): Promise<{ user: User; token: string }> {
+    console.log('[AI Investigator] Google demo sign-in requested');
     const res = await request<{ user: User; token: string }>('/api/auth/google-sign-in', {
       method: 'POST',
       body: JSON.stringify(params),
@@ -95,19 +110,22 @@ export const api = {
   },
 
   async logout(): Promise<void> {
+    console.log('[AI Investigator] User logging out');
     try {
       await request('/api/auth/logout', { method: 'POST' });
     } catch {
-      // ignore
+      // Ignore network errors on logout
     } finally {
       clearStoredAuth();
     }
   },
 
   async getCurrentUser(): Promise<User | null> {
+    const token = getStoredToken();
+    if (!token) return null;
     try {
       const res = await request<{ user: User }>('/api/auth/me');
-      setStoredAuth(getStoredToken()!, res.user);
+      setStoredAuth(token, res.user);
       return res.user;
     } catch {
       clearStoredAuth();
@@ -115,25 +133,15 @@ export const api = {
     }
   },
 
-  async updatePlan(plan: 'free' | 'pro' | 'vip'): Promise<User> {
-    const res = await request<{ user: User; success: boolean }>('/api/user/plan', {
-      method: 'POST',
-      body: JSON.stringify({ plan }),
-    });
-    const token = getStoredToken();
-    if (token) {
-      setStoredAuth(token, res.user);
-    }
-    return res.user;
-  },
-
   // Analyses
   async getAnalyses(): Promise<ReasoningAnalysis[]> {
+    console.log('[AI Investigator] Fetching saved reasoning analyses list');
     const res = await request<{ analyses: ReasoningAnalysis[] }>('/api/analyses');
     return res.analyses;
   },
 
   async getAnalysis(id: string): Promise<ReasoningAnalysis> {
+    console.log('[AI Investigator] Fetching single analysis details for ID:', id);
     const res = await request<{ analysis: ReasoningAnalysis }>(`/api/analyses/${id}`);
     return res.analysis;
   },
@@ -143,84 +151,33 @@ export const api = {
     context?: string;
     constraints?: string;
   }): Promise<ReasoningAnalysis> {
+    console.log('[AI Investigator] Submitting new reasoning analysis input:', params);
     const res = await request<{ analysis: ReasoningAnalysis }>('/api/analyses/generate', {
       method: 'POST',
       body: JSON.stringify(params),
     });
+    console.log('[AI Investigator] Reasoning analysis output received. Soundness score:', res.analysis.soundnessScore);
     return res.analysis;
   },
 
-  async updateAnalysis(id: string, updates: Partial<ReasoningAnalysis>): Promise<ReasoningAnalysis> {
-    const res = await request<{ analysis: ReasoningAnalysis }>(`/api/analyses/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(updates),
-    });
-    return res.analysis;
-  },
-
-  async deleteAnalysis(id: string): Promise<boolean> {
-    const res = await request<{ success: boolean }>(`/api/analyses/${id}`, {
+  async deleteAnalysis(id: string): Promise<void> {
+    console.log('[AI Investigator] Deleting analysis ID:', id);
+    await request(`/api/analyses/${id}`, {
       method: 'DELETE',
     });
-    return res.success;
   },
 
   async challengeAnalysis(params: {
     analysisId: string;
-    challengeType: 'devils_advocate' | 'cognitive_bias' | 'what_if' | 'missing_evidence';
-    specificNodeId?: string;
+    challengeType?: string;
     customQuery?: string;
   }): Promise<ChallengeInsight[]> {
-    const res = await request<{ challenges: ChallengeInsight[] }>(`/api/analyses/${params.analysisId}/challenge`, {
+    console.log('[AI Investigator] Requesting adversarial challenge stress-test:', params);
+    const res = await request<{ challenges: ChallengeInsight[] }>('/api/analyses/challenge', {
       method: 'POST',
-      body: JSON.stringify({
-        challengeType: params.challengeType,
-        specificNodeId: params.specificNodeId,
-        customQuery: params.customQuery,
-      }),
+      body: JSON.stringify(params),
     });
+    console.log('[AI Investigator] Challenge insights output received. Total items:', res.challenges.length);
     return res.challenges;
-  },
-
-  // Admin
-  async getAdminStats(): Promise<SystemStats> {
-    const res = await request<{ stats: SystemStats }>('/api/admin/stats');
-    return res.stats;
-  },
-
-  async getAdminUsers(): Promise<(User & { analysisCount: number })[]> {
-    const res = await request<{ users: (User & { analysisCount: number })[] }>('/api/admin/users');
-    return res.users;
-  },
-
-  async updateUserStatus(userId: string, status: 'active' | 'disabled'): Promise<User> {
-    const res = await request<{ user: User }>(`/api/admin/users/${userId}/status`, {
-      method: 'PUT',
-      body: JSON.stringify({ status }),
-    });
-    return res.user;
-  },
-
-  async getAdminAnalyses(): Promise<any[]> {
-    const res = await request<{ analyses: any[] }>('/api/admin/analyses');
-    return res.analyses;
-  },
-
-  async getAdminAiMetrics(): Promise<AiMetric[]> {
-    const res = await request<{ metrics: AiMetric[] }>('/api/admin/ai-metrics');
-    return res.metrics;
-  },
-
-  async getAdminErrorLogs(): Promise<SystemErrorLog[]> {
-    const res = await request<{ logs: SystemErrorLog[] }>('/api/admin/error-logs');
-    return res.logs;
-  },
-
-  async clearAdminErrorLogs(): Promise<void> {
-    await request('/api/admin/error-logs', { method: 'DELETE' });
-  },
-
-  async checkHealth(): Promise<any> {
-    return request('/api/health');
   },
 };
